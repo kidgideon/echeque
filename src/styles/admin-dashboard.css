@@ -1,0 +1,31 @@
+.admin-dashboard {
+    width: 100%;
+    min-height: 100dvh;
+    display: flex;
+    justify-content: center;
+    align-items: end;
+    flex-direction: column;
+}
+
+.area {
+    width: 81%;
+    min-height: 100dvh;
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    flex-direction: column;
+    padding-bottom: 20px;
+}
+
+
+@media (max-width: 768px) {
+   .admin-dashboard {
+    align-items: center;
+   }
+   
+   .area {
+    width: 100%;
+    padding-top: 50px;
+   }
+   
+}

@@ -1,0 +1,61 @@
+.analysis-component {
+    width: 95%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.top-area-anal {
+    width: 100%;
+    display: flex;
+    justify-content: start;
+    align-items: start;
+    font-weight: bold;
+    font-size: 20px;
+    margin: 5px;
+}
+
+.boxes-analysis {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-direction: row;
+    gap: 20px;
+}
+
+.box-transactions  {
+  width: 60%;
+  height: 200px;
+  background-color: white;
+  display:  flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  border-radius: 10px;
+}
+
+.box-transactions i{
+    margin: 5px;
+    font-size: 60px;
+}
+
+.box-transactions h1 {
+    margin: 5px;
+}
+
+.box-transactions p {
+    margin: 5px;
+}
+
+@media (max-width: 768px) { 
+   .boxes-analysis {
+    flex-direction: column;
+   }
+
+   .box-transactions {
+    width: 95%;
+    max-width: 320px;
+   }
+}

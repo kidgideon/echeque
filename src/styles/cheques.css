@@ -1,0 +1,143 @@
+.cheque-creation-form {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    margin-top: 20px;
+}
+
+
+.selectValue_Value {
+   width: 93%;
+   padding: 10px;
+}
+
+.cheque-form {
+    width: 95%;
+    max-width: 450px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    background-color: white;
+    padding: 20px;
+    border-radius: 10px;
+}
+
+.cheque-form i {
+    font-size: 40px;
+}
+
+.cheque-form input {
+  margin: 10px 0;
+  padding: 10px;
+  width: 100%;
+  max-width: 400px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.cheque-form button {
+  margin-top: 10px;
+  background-color: black;
+  color: white;
+  padding: 12px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  width: 100%;
+  max-width: 400px;
+}
+
+
+.cheques-existing-cheques {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+.cheque-box {
+    width: 200px;
+    height: 200px;
+    background-color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    margin: 20px;
+    border-radius: 10px;
+    padding: 10px;
+}
+
+.lead-icon {
+    font-size: 40px;
+}
+
+.cheque-amount-cheque {
+    font-size: 20px;
+    margin: 5px;
+}
+
+.cheque-amount-owner {
+    font-size: 18px;
+     margin: 5px;
+     text-align: center;
+     width: 100%;
+}
+
+.no-cheques-created {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    margin-top: 50px;
+    margin-bottom: 10px;
+    gap: 10px;
+    color: gray;
+}
+.no-cheques-created i {
+    font-size: 60px;
+}
+
+.bank-header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 20px;
+  border-bottom: 1px dashed #ccc;
+  background: #f0f9ff;
+}
+
+.bank-logo {
+  height: 40px;
+  width: auto;
+  object-fit: contain;
+}
+
+.bank-name {
+  font-size: 18px;
+  font-weight: bold;
+  color: #333;
+}
+
+
+@media (max-width: 768px) { 
+    
+.cheque-form {
+    width: 95%;
+    max-width: 300px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    background-color: white;
+    padding: 20px;
+    border-radius: 10px;
+}
+
+}

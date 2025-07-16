@@ -1,0 +1,170 @@
+.manage-area {
+ width: 100%;
+ display: flex;
+ justify-content: center;
+ align-items: center;
+ flex-direction: column;
+}
+
+.manage-area h2 {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.cheque-info {
+    width: 95%;
+    max-width: 500px;
+    background-color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    padding: 20px;
+    border-radius: 10px;
+}
+
+.cheque-info p,
+.receiver-details p {
+  margin: 6px 0;
+}
+
+.process-box {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 10px;
+    background-color: white;
+    max-width: 500px;
+    margin-top: 30px;
+    padding: 10px;
+    border-radius: 10px;
+    margin-bottom: 30px;
+}
+
+.process-box input {
+    width: 80%;
+    max-width: 350px;
+    padding: 10px 5px;
+}
+
+
+.process-box button {
+  padding: 8px 14px;
+  background-color: black;
+  color: white;
+  border: none;
+  border-radius: 5px;
+}
+
+.receiver-details {
+  background: #f9f9f9;
+  width: 95%;
+  max-width: 500px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  flex-direction: column;
+  border-radius: 10px;
+  padding: 10px;
+}
+
+.txn-actions {
+  margin-top: 20px;
+}
+
+.txn-status.success {
+  color: green;
+}
+
+.txn-status.pending {
+  color: orange;
+}
+
+.txn-status.declined {
+  color: red;
+}
+
+.action-buttons button {
+  margin-right: 10px;
+  padding: 8px 14px;
+  border: none;
+  border-radius: 5px;
+}
+
+.action-buttons button.decline {
+  background-color: crimson;
+  color: white;
+}
+
+.action-buttons button:not(.decline) {
+  background-color: forestgreen;
+  color: white;
+}
+
+.no-transaction {
+  margin-top: 20px;
+  font-style: italic;
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+  .manage-area {
+    padding: 10px;
+  }
+
+  .process-box textarea {
+    min-height: 60px;
+  }
+
+  .action-buttons button {
+    margin-top: 10px;
+    width: 48%;
+  }
+
+  
+.receiver-details {
+  background: #f9f9f9;
+  width: 95%;
+  max-width: 300px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  flex-direction: column;
+  border-radius: 10px;
+}
+
+
+.process-box {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 10px;
+    background-color: white;
+    max-width: 300px;
+    margin-top: 30px;
+    padding: 10px;
+    border-radius: 10px;
+    margin-bottom: 30px;
+}
+
+.cheque-info {
+    width: 95%;
+    max-width: 300px;
+    background-color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    padding: 20px;
+    border-radius: 10px;
+}
+
+}
