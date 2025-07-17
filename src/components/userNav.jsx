@@ -8,7 +8,7 @@ const Navbar = () => {
     <nav  className={Styles.navbar}>
          <img onClick={() => {navigate("/")}} src={logo} alt="SwiftChq Logo" className={Styles.logo} />
        <p onClick={() => {navigate("/")}}>
-        swiftChq.io
+        swift cheque
        </p>
     </nav>
   );

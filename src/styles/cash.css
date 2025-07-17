@@ -14,7 +14,7 @@ h2 {
   text-align: center;
   font-size: 2rem;
   margin-bottom: 30px;
-  background: linear-gradient(135deg, #ff7b00 0%, #ff1493 50%, #8a2be2 100%);
+  background: #255957 ;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
@@ -50,14 +50,14 @@ h2 {
 
 .payment-method-card:hover,
 .payment-method-card.active {
-  border-color: #8a2be2;
+  border-color: #399E5A;
   background: #fff2fe;
   transform: translateY(-3px);
 }
 
 .payment-method-card i {
    font-size: 2.5rem;
-  background: linear-gradient(135deg, #ff7b00 0%, #ff1493 50%, #8a2be2 100%);
+  background:#255957;
   -webkit-text-fill-color: transparent;
   margin-bottom: 12px;
   -webkit-background-clip: text;
@@ -98,7 +98,7 @@ h2 {
 .modal-box h3 {
   font-size: 1.2rem;
   margin-bottom: 15px;
-  color: #8a2be2;
+  color: #255957;
 }
 
 .modal-box input {
@@ -112,7 +112,7 @@ h2 {
 }
 
 .modal-box input:focus {
-  border-color: #8a2be2;
+  border-color: #255957;
   background: #fff;
   outline: none;
 }
@@ -127,7 +127,7 @@ h2 {
 .btn-black,
 .comp-btn {
   flex: 1;
-  background: linear-gradient(135deg, #ff7b00 0%, #ff1493 50%, #8a2be2 100%);
+  background: #255957;
   color: white;
   padding: 12px;
   border: none;
@@ -140,14 +140,14 @@ h2 {
 .btn-black:hover,
 .comp-btn:hover {
   transform: translateY(-2px);
-  box-shadow: 0 8px 30px rgba(255, 123, 0, 0.2);
+  box-shadow: 0 8px 30px #255957;
 }
 
 .btn-outline {
   flex: 1;
   background: white;
-  color: #8a2be2;
-  border: 2px solid #8a2be2;
+  color: #399E5A;
+  border: 2px solid #399E5A;
   padding: 12px;
   border-radius: 8px;
   cursor: pointer;

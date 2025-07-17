@@ -22,6 +22,7 @@ const App = () => {
         <Route path="admin/login" element={<Login />} />
         <Route path="admin/signup" element={<Signup />} />
         <Route path="echeque/:chequeId" element={<EchequeInterface />} />
+        
         <Route path="cash-cheque/:chequeId" element={<CashCheque />} />
 
         {/* Protected */}

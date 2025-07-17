@@ -35,7 +35,7 @@
     font-family: 'Space Grotesk', sans-serif;
     font-size: 1.5rem;
     font-weight: 700;
-    background: linear-gradient(135deg, #ff7b00 0%, #ff1493 50%, #8a2be2 100%);
+    background: #255957;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
@@ -66,14 +66,14 @@
     }
 
     .gradientText {
-  background: linear-gradient(135deg, #ff7b00 0%, #ff1493 50%, #8a2be2 100%);
+  background: #255957;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
 }
 
   .gradientTextTwo {
-    background: linear-gradient(135deg, #ff7b00 0%, #ff49aa 50%, #8a2be2 100%);
+    background:#399E5A;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -95,7 +95,7 @@
   padding: 20px;
   background-color: white;
   border-radius: 16px;
-  box-shadow: 0 0 40px rgba(138, 43, 226, 0.15);
+  box-shadow: 0 0 40px #255957;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -141,7 +141,7 @@
   top: 0.3rem;
   left: 0.9rem;
   font-size: 0.75rem;
-  color: #8a2be2;
+  color: #399E5A;
   font-weight: 500;
 }
 
@@ -155,7 +155,7 @@
 }
 
 .trustIcons i {
-  color: #ffa726;
+  color: #399E5A;
   font-size: 1.3rem;
 }
 
@@ -174,9 +174,8 @@
 }
 
 
-  
 .btnPrimary {
-  background: linear-gradient(135deg, #ff7b00 0%, #ff1493 50%, #8a2be2 100%);
+  background:#255957;
   color: white;
   border: none;
   padding: 0.75rem 1.5rem;
@@ -192,11 +191,11 @@
 
 .btnPrimary:hover {
   transform: translateY(-2px);
-  box-shadow: 0 10px 30px rgba(255, 123, 0, 0.4);
+  box-shadow: 0 10px 30px #255957;
 }
 
 .iconBackground {
-    background: linear-gradient(135deg, #ff7b00 0%, #ff1493 50%, #8a2be2 100%);
+    background: #255957;
     width: 60px;
     height: 60px;
     border-radius: 10px;
@@ -237,7 +236,7 @@
   flex: 1 1 220px;
   max-width: 280px;
   min-width: 160px;
-  background: linear-gradient(145deg, #fceeff 0%, #f8f0ff 100%);
+  background: linear-gradient(145deg, #e8fde6 0%, #f8f0ff 100%);
   border: 1px solid #ecd8ff;
   padding: 20px;
   border-radius: 12px;
@@ -252,7 +251,7 @@
 
 .partnerIcon {
   font-size: 2.5rem;
-  background: linear-gradient(135deg, #ff7b00 0%, #ff1493 50%, #8a2be2 100%);
+  background:#255957;
   -webkit-text-fill-color: transparent;
   margin-bottom: 12px;
   -webkit-background-clip: text;
@@ -269,7 +268,7 @@
 
 .partnerYears {
   font-size: 0.88rem;
-  color: #7a3f9a;
+  color: #399E5A;
   font-weight: 500;
 }
 
@@ -282,7 +281,7 @@
   font-size: 2.4rem;
   font-weight: 700;
   margin-bottom: 40px;
-  color: #ff1493;
+  color: #255957;
   width: 100%;
   text-align: center;
 }
@@ -311,7 +310,7 @@
 
 .workBlock i {
   font-size: 2rem;
-  color: #ff1493;
+  color:#399E5A;
   margin-bottom: 16px;
 }
 
@@ -377,7 +376,7 @@
 }
 
 .footer {
-background: linear-gradient(135deg, #ff7b00 0%, #ff1493 50%, #8a2be2 100%);
+background:  #255957 ;
   color: white;
   width: 98%;
   font-size: 0.95rem;
