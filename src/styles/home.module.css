@@ -255,7 +255,13 @@
   -webkit-text-fill-color: transparent;
   margin-bottom: 12px;
   -webkit-background-clip: text;
-  
+}
+
+
+.partnerYears {
+  font-size: 0.88rem;
+  color: #399E5A;
+  font-weight: 500;
 }
 
 
@@ -266,11 +272,6 @@
   margin-bottom: 6px;
 }
 
-.partnerYears {
-  font-size: 0.88rem;
-  color: #399E5A;
-  font-weight: 500;
-}
 
 .worksInterface {
   padding: 60px 20px;
