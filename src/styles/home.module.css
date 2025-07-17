@@ -236,11 +236,11 @@
   flex: 1 1 220px;
   max-width: 280px;
   min-width: 160px;
-  background: linear-gradient(145deg, #e8fde6 0%, #f8f0ff 100%);
+  background: white;
   border: 1px solid #ecd8ff;
   padding: 20px;
   border-radius: 12px;
-  box-shadow: 0 10px 25px rgba(138, 43, 226, 0.08);
+  box-shadow: 0 10px 25px #255957;
   transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
@@ -251,7 +251,7 @@
 
 .partnerIcon {
   font-size: 2.5rem;
-  background:#255957;
+  background:#399E5A;
   -webkit-text-fill-color: transparent;
   margin-bottom: 12px;
   -webkit-background-clip: text;
@@ -295,9 +295,10 @@
 }
 
 .workBlock {
-  background: white;
+  background: #255957;
   padding: 30px 20px;
   border-radius: 12px;
+  color: white;
   border: 1px solid #eee;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
   width: 240px;
@@ -318,13 +319,13 @@
 .mainText {
   font-weight: 600;
   font-size: 1.1rem;
-  color: #222;
+  color: white;
   margin-bottom: 8px;
 }
 
 .subText {
   font-size: 0.95rem;
-  color: #555;
+  color: white;
   line-height: 1.4;
 }
 
@@ -412,7 +413,7 @@ background:  #255957 ;
 }
 
 .footerSection a {
-  color: #9f38ff;
+  color: #255957;
   text-decoration: none;
   margin: 0 4px;
 }

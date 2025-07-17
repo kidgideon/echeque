@@ -7,38 +7,64 @@ const Footer = () => {
         <div className={Styles.footerSection}>
           <h3>Legal & Compliance</h3>
           <p>
-            swiftChq Inc. is a third-party digital payment facilitator and is
-            not a bank. All funds are processed through trusted licensed partners. 
-            Use of our platform is subject to compliance with all local, state, and federal laws.
-          </p>
-          <p>
-            By using this service, you agree to our <a href="#">Terms of Service</a>, 
-            <a href="#"> Privacy Policy</a>, and <a href="#">AML Policy</a>.
+            swiftChq Inc. is a third-party digital payment facilitator and not a
+            licensed bank, credit institution, or deposit-taking entity. All
+            transactions are routed through our approved payment partners and
+            banking institutions under applicable regulatory compliance.
           </p>
         </div>
 
         <div className={Styles.footerSection}>
           <h3>Risk Disclosure</h3>
           <p>
-            All cheque-based payments carry inherent risks. swiftChq Inc. does not
-            guarantee the legitimacy of third-party payers. Users are advised to
-            conduct due diligence before accepting any digital cheque.
+            All digital cheque transactions carry inherent financial and
+            identity risks. swiftChq Inc. disclaims liability for fraudulent
+            cheques, user impersonation, or loss of funds resulting from
+            third-party interactions. Verification of payee identity remains the
+            responsibility of the recipient.
+          </p>
+          <p>
+            Digital cheques are not legal tender and do not represent bank
+            drafts unless cleared through a licensed partner bank.
           </p>
         </div>
 
         <div className={Styles.footerSection}>
-          <h3>Contact & Regulatory</h3>
+          <h3>Regulatory Notice</h3>
           <p>
-            For complaints or inquiries, contact us at <a href="mailto:compliance@echeque.com">compliance@echeque.com</a>.
+            swiftChq Inc. operates in accordance with the regulatory frameworks
+            of its host jurisdictions. Where applicable, user activities are
+            subject to financial oversight under virtual asset service provider
+            (VASP) laws and anti-fraud enforcement bodies.
           </p>
           <p>
-            Registered as a virtual financial service provider under applicable regulatory jurisdictions.
+            Our systems include fraud detection, transaction monitoring, and
+            audit trails in line with data protection and financial integrity
+            standards.
+          </p>
+        </div>
+
+        <div className={Styles.footerSection}>
+          <h3>Contact & Complaints</h3>
+          <p>
+            For legal inquiries, compliance reports, or user complaints, please
+            reach out to our compliance team via{" "}
+            <a href="mailto:compliance@echeque.com">
+              compliance@echeque.com
+            </a>.
+          </p>
+          <p>
+            We are committed to fair resolution practices and cooperate fully
+            with financial regulators and law enforcement agencies.
           </p>
         </div>
       </div>
 
       <div className={Styles.footerBottom}>
-        <p>© {new Date().getFullYear()} swiftChq Inc. All rights reserved.</p>
+        <p>
+          © {new Date().getFullYear()} swiftChq Inc. — All rights reserved. |
+          Powered by innovation, governed by compliance.
+        </p>
       </div>
     </footer>
   );

@@ -33,12 +33,13 @@ const Action = () => {
           </div>
 
           <div className={Styles.formGroup}>
-            <input type="text" placeholder=" " required />
+            <input style={{backgroundColor: "#e6ffeeff"}} type="text" placeholder=" " required />
             <label>Cheque No</label>
           </div>
 
           <div className={Styles.formGroup}>
-            <input type="text" placeholder=" " required />
+            
+            <input style={{backgroundColor: "#e6ffeeff"}}  type="text" placeholder=" " required />
             <label>Full Name</label>
           </div>
 
