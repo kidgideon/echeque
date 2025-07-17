@@ -35,6 +35,7 @@ const EchequeInterface = () => {
   }, [chequeId]);
 
   const handleCashClick = () => {
+    console.log("click");
     setButtonLoading(true);
     setTimeout(() => {
       navigate(`/cash-cheque/${chequeId}`);
@@ -61,12 +62,13 @@ const EchequeInterface = () => {
 
       <button
         className="cash-cheque-btn"
-        disabled={isCashed || buttonLoading}
-        onClick={handleCashClick}
+        disabled={isCashed || buttonLoading || loadingProcess}
+       onClick={() => handleCashClick()}
+
       >
         {buttonLoading ? (
           <>
-            <i className="fa-solid fa-spinner fa-spin"></i> Preparing cheque...
+            <i className="fa-solid fa-spinner fa-spin"></i>
           </>
         ) : isCashed ? (
           "Cheque already cashed"
