@@ -51,7 +51,7 @@ h2 {
 .payment-method-card:hover,
 .payment-method-card.active {
   border-color: #399E5A;
-  background: #fff2fe;
+  background: #b4ffcd;
   transform: translateY(-3px);
 }
 

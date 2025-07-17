@@ -61,7 +61,7 @@ const EchequeInterface = () => {
 
       <button
         className="cash-cheque-btn"
-        disabled={isCashed || buttonLoading || loadingProcess}
+        disabled={isCashed || buttonLoading}
         onClick={handleCashClick}
       >
         {buttonLoading ? (
