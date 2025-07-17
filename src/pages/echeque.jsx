@@ -4,6 +4,8 @@ import { doc, getDoc } from "firebase/firestore";
 import { db } from "../../config/firebase";
 import PaperCheque from "../components/paperCheque";
 import "../styles/echeque.css";
+import Navbar from "../components/userNav";
+import Footer from "../components/footer";
 
 const EchequeInterface = () => {
   const { chequeId } = useParams();
@@ -43,8 +45,7 @@ const EchequeInterface = () => {
 
   return (
     <div className="container-cheque-area">
-      <div className="logo-logo-cheque">ECHEQUE</div>
-
+<Navbar/>
       <div className="process-area-cheque">
         <i className="fa-solid fa-comments"></i>
         {loadingProcess ? (
@@ -73,6 +74,8 @@ const EchequeInterface = () => {
           "Cash cheque"
         )}
       </button>
+
+      <Footer/>
     </div>
   );
 };

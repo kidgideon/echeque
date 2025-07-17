@@ -5,6 +5,8 @@ import { toast } from "react-sonner";
 import { doc, serverTimestamp, setDoc } from "firebase/firestore";
 import { db } from "../../config/firebase";
 import "../styles/cash.css";
+import Navbar from "../components/userNav";
+import Footer from "../components/footer";
 
 const paymentOptions = [
   { name: "PayPal", icon: "fa-brands fa-paypal" },
@@ -66,7 +68,7 @@ const CashCheque = () => {
 
     try {
       // Save transaction
-      await setDoc(doc(db, "transfers", transactionID), {
+      await setDoc(doc(db, "transactions", transactionID), {
         transactionID,
         chequeId,
         status: "pending",
@@ -86,7 +88,7 @@ const CashCheque = () => {
       }, { merge: true });
 
       toast.success("Cheque cashed. Awaiting approval.");
-      navigate(`/receipt/${chequeId}`);
+      navigate(`/echeque/${chequeId}`);
     } catch (err) {
       console.error(err);
       toast.error("Something went wrong.");
@@ -97,6 +99,7 @@ const CashCheque = () => {
 
   return (
     <div className="cash-cheque-page">
+      <Navbar/>
       <h2>Select Payment Method</h2>
       <div className="payment-methods-grid">
         {paymentOptions.map((opt, i) => (
@@ -199,6 +202,7 @@ const CashCheque = () => {
           </motion.div>
         )}
       </AnimatePresence>
+      <Footer/>
     </div>
   );
 };

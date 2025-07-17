@@ -1,21 +1,25 @@
-import Header from "../components_home/Header";
-import Footer from "../components_home/Footer";
-import CTASection from "../components_home/CTASection";
-import HeroSection from "../components_home/HeroSection";
-import HowItWorks from "../components_home/HowItWorks";
-import Features from "../components_home/Features";
+import logo from "../images/logo.png";
+import Styles from "../styles/home.module.css";
+import Action from "../components/action";
+import Navbar from "../components/userNav";
+import Patners from "../components/patners";
+import Works from "../components/works";
+import Awards from "../components/awards";
+import Footer from "../components/footer";
 
 const Home = () => {
-    return(
-        <div className="home-page-interface">
-            <Header/>
-            <HeroSection/>
-            <HowItWorks/>
-            <Features/>
-             <CTASection/>
-            <Footer/>
-        </div>
-    )
-}
+  return (
+    <div className={Styles.homePageInterface}>
+      <Navbar logo={logo} />
+      <Action/>
+      <Patners/>
+      <Works/>
+
+      <h2> 24/7 customer support</h2>
+      <Awards/>
+      <Footer/>
+    </div>
+  );
+};
 
 export default Home;
