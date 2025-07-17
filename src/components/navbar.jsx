@@ -30,7 +30,7 @@ const Navbar = () => {
     <>
       {/* Mobile Header */}
       <div className="mobile-header">
-        <h3>Echeque</h3>
+        <h3>swiftCheque</h3>
         <i
           className={`fa-solid ${isOpen ? "fa-xmark" : "fa-bars"} hamburger`}
           onClick={() => setIsOpen(!isOpen)}
@@ -39,7 +39,7 @@ const Navbar = () => {
 
       {/* Desktop Sidebar */}
       <div className="navbar-interface-admin">
-        <h3 className="brand-name">Echeque</h3>
+        <h3 className="brand-name">swiftCheque</h3>
 
         <div className="nav-group">
           {menuItems.map(({ label, icon }) => (

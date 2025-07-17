@@ -66,7 +66,7 @@ const PaperCheque = ({ chequeId }) => {
               onError={(e) => (e.target.style.display = "none")}
             />
           )}
-          <div className="bank-name">{bankName || "Bank of Echeque"}</div>
+          <div className="bank-name">{bankName || "Bank of swiftCheque"}</div>
         </div>
 
         {/* Main cheque content */}
@@ -104,7 +104,7 @@ const PaperCheque = ({ chequeId }) => {
           <div className="bottom-section">
             <div className="bank-info">
               <p className="bank-label">PAYABLE AT</p>
-              <p>ALL {bankName?.toUpperCase() || "ECHEQUE"} BRANCHES</p>
+              <p>ALL swiftCheque BRANCHES</p>
               <p>ACCOUNT № 001234567</p>
             </div>
             <div className="memo-signature">

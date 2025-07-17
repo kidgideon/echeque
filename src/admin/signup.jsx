@@ -57,7 +57,7 @@ const Signup = () => {
   return (
     <div className="admin-login-interface">
       <h2 className="platform-logo-inword">
-        <i className="fa-solid fa-money-check-dollar logo-logo-logo"></i> Echeque
+        <i className="fa-solid fa-money-check-dollar logo-logo-logo"></i> swiftCheque
       </h2>
 
       <div className="form">
