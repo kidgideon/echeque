@@ -105,9 +105,9 @@ h2 {
   width: 90%;
   padding: 12px;
   margin: 10px 0;
-  border: 1px solid #d2c0f0;
+  border: 1px solid #ffffff;
   border-radius: 8px;
-  background: #f4f0fa;
+  background: #ffffff;
   transition: all 0.2s ease-in-out;
 }
 
@@ -156,7 +156,7 @@ h2 {
 }
 
 .btn-outline:hover {
-  background: #f3ecff;
+  background: #ffffff;
 }
 
 /* Fade-in animation */
