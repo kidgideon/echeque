@@ -246,7 +246,7 @@
 
 .partnerCard:hover {
   transform: translateY(-6px);
-  box-shadow: 0 20px 30px rgba(138, 43, 226, 0.15);
+  box-shadow: 0 20px 30px #255957;
 }
 
 .partnerIcon {
