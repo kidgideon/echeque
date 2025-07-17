@@ -1,12 +1,14 @@
-import { useState } from "react";
+
+import { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
+import { getDoc, doc, setDoc, serverTimestamp } from "firebase/firestore";
+import { getAuth, signOut } from "firebase/auth";
+import { db } from "../../config/firebase";
 import { motion, AnimatePresence } from "framer-motion";
 import { toast } from "react-sonner";
-import { doc, serverTimestamp, setDoc } from "firebase/firestore";
-import { db } from "../../config/firebase";
-import "../styles/cash.css";
 import Navbar from "../components/userNav";
 import Footer from "../components/footer";
+import "../styles/cash.css";
 
 const paymentOptions = [
   { name: "PayPal", icon: "fa-brands fa-paypal" },
@@ -25,6 +27,34 @@ const paymentOptions = [
 const CashCheque = () => {
   const { chequeId } = useParams();
   const navigate = useNavigate();
+
+  useEffect(() => {
+  const checkIfCashed = async () => {
+    try {
+      const chequeRef = doc(db, "cheques", chequeId);
+      const chequeSnap = await getDoc(chequeRef);
+
+      if (chequeSnap.exists()) {
+        const chequeData = chequeSnap.data();
+
+        if (chequeData.status === "cashed") {
+          const auth = getAuth();
+          await signOut(auth);
+
+          toast.error("This cheque has already been cashed.");
+          navigate("/");
+        }
+      }
+    } catch (err) {
+      console.error("Error checking cheque:", err);
+      toast.error("Could not verify cheque status.");
+      navigate("/");
+    }
+  };
+
+  checkIfCashed();
+}, [chequeId, navigate]);
+
 
   const [step, setStep] = useState(0);
   const [selectedMethod, setSelectedMethod] = useState(null);
