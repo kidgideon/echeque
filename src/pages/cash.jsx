@@ -20,7 +20,7 @@ const paymentOptions = [
   { name: "Wise", icon: "fa-solid fa-globe" },
   { name: "Revolut", icon: "fa-solid fa-credit-card" },
   { name: "Crypto", icon: "fa-brands fa-bitcoin" },
-  { name: "Others", icon: "fa-solid fa-plus" },
+  { name: "Other Banks", icon: "fa-solid fa-plus" },
 ];
 
 const CashCheque = () => {
@@ -30,7 +30,15 @@ const CashCheque = () => {
   const [chequeData, setChequeData] = useState(null);
   const [step, setStep] = useState(0);
   const [selectedMethod, setSelectedMethod] = useState(null);
-  const [details, setDetails] = useState({ recipientAddress: "", bankName: "", accountNumber: "" });
+
+  // Details structure depends on method
+  const [details, setDetails] = useState({
+    recipientAddress: "",
+    bankName: "",
+    accountNumber: "",
+    country: "",
+  });
+
   const [fullname, setFullname] = useState("");
   const [passwordInput, setPasswordInput] = useState("");
   const [loading, setLoading] = useState(false);
@@ -69,7 +77,12 @@ const CashCheque = () => {
   const reset = () => {
     setStep(0);
     setSelectedMethod(null);
-    setDetails({ recipientAddress: "", bankName: "", accountNumber: "" });
+    setDetails({
+      recipientAddress: "",
+      bankName: "",
+      accountNumber: "",
+      country: "",
+    });
     setFullname("");
     setPasswordInput("");
   };
@@ -79,14 +92,18 @@ const CashCheque = () => {
   };
 
   const handleNext = () => {
-    if (!details.recipientAddress.trim()) {
-      toast.error("Enter recipient address");
-      return;
-    }
-
-    if (selectedMethod === "Others" && (!details.bankName.trim() || !details.accountNumber.trim())) {
-      toast.error("Fill all bank fields");
-      return;
+    if (selectedMethod === "Other Banks") {
+      const requiredFields = ["bankName", "accountNumber", "country"];
+      const missingField = requiredFields.find((f) => !details[f].trim());
+      if (missingField) {
+        toast.error(`Please fill the ${missingField} field`);
+        return;
+      }
+    } else {
+      if (!details.recipientAddress.trim()) {
+        toast.error("Enter recipient address");
+        return;
+      }
     }
 
     if (chequeData?.password && chequeData.password !== "") {
@@ -119,20 +136,20 @@ const CashCheque = () => {
         transactionID,
         chequeId,
         status: "pending",
-        receiversDetails: { fullname, ...details }, // includes recipientAddress
+        receiversDetails: { fullname, ...details },
         type: "cash cheque",
         date: serverTimestamp(),
       });
 
-      // Update cheque with receiver info and cashing status
+      // Update cheque with receiver info
       await setDoc(
         doc(db, "cheques", chequeId),
         {
           status: "cashed",
           process: "Cheque has been cashed and is waiting for approval",
           transactionID,
-          receiverName: fullname,                 // save the full name
-          receiversDetails: { ...details, fullname }, // save details consistently
+          receiverName: fullname,
+          receiversDetails: { ...details, fullname },
         },
         { merge: true }
       );
@@ -173,38 +190,20 @@ const CashCheque = () => {
           <motion.div className="modal-backdrop" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}>
             <motion.div className="modal-box" initial={{ scale: 0.9 }} animate={{ scale: 1 }} exit={{ scale: 0.9 }}>
               <h3>Enter {selectedMethod} Details</h3>
-              <input
-                type="text"
-                name="recipientAddress"
-                value={details.recipientAddress}
-                placeholder="Recipient address"
-                onChange={handleDetailsChange}
-              />
-              {selectedMethod === "Others" && (
+
+              {selectedMethod === "Other Banks" ? (
                 <>
-                  <input
-                    type="text"
-                    name="bankName"
-                    value={details.bankName}
-                    placeholder="Bank Name"
-                    onChange={handleDetailsChange}
-                  />
-                  <input
-                    type="text"
-                    name="accountNumber"
-                    value={details.accountNumber}
-                    placeholder="Account Number"
-                    onChange={handleDetailsChange}
-                  />
+                  <input type="text" name="bankName" value={details.bankName} placeholder="Bank Name" onChange={handleDetailsChange} />
+                  <input type="text" name="accountNumber" value={details.accountNumber} placeholder="Account Number / IBAN" onChange={handleDetailsChange} />
+                  <input type="text" name="country" value={details.country} placeholder="Bank Country" onChange={handleDetailsChange} />
                 </>
+              ) : (
+                <input type="text" name="recipientAddress" value={details.recipientAddress} placeholder="Recipient Address" onChange={handleDetailsChange} />
               )}
+
               <div className="modal-buttons">
-                <button className="btn-outline" onClick={reset}>
-                  Cancel
-                </button>
-                <button className="btn-black" onClick={handleNext}>
-                  Next
-                </button>
+                <button className="btn-outline" onClick={reset}>Cancel</button>
+                <button className="btn-black" onClick={handleNext}>Next</button>
               </div>
             </motion.div>
           </motion.div>
@@ -215,19 +214,10 @@ const CashCheque = () => {
           <motion.div className="modal-backdrop" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}>
             <motion.div className="modal-box" initial={{ scale: 0.9 }} animate={{ scale: 1 }} exit={{ scale: 0.9 }}>
               <h3>Enter Cheque Password</h3>
-              <input
-                type="password"
-                placeholder="Password"
-                value={passwordInput}
-                onChange={(e) => setPasswordInput(e.target.value)}
-              />
+              <input type="password" placeholder="Password" value={passwordInput} onChange={(e) => setPasswordInput(e.target.value)} />
               <div className="modal-buttons">
-                <button className="btn-outline" onClick={reset}>
-                  Cancel
-                </button>
-                <button className="btn-black" onClick={handlePasswordSubmit}>
-                  Submit
-                </button>
+                <button className="btn-outline" onClick={reset}>Cancel</button>
+                <button className="btn-black" onClick={handlePasswordSubmit}>Submit</button>
               </div>
             </motion.div>
           </motion.div>
@@ -240,9 +230,7 @@ const CashCheque = () => {
               <h3>Your Full Name</h3>
               <input type="text" placeholder="Full Name" value={fullname} onChange={(e) => setFullname(e.target.value)} />
               <div className="modal-buttons">
-                <button className="btn-outline" onClick={reset}>
-                  Cancel
-                </button>
+                <button className="btn-outline" onClick={reset}>Cancel</button>
                 <button className="comp-btn" onClick={handleFinish} disabled={loading}>
                   {loading ? "Processing..." : "Complete Transaction"}
                 </button>
@@ -251,6 +239,7 @@ const CashCheque = () => {
           </motion.div>
         )}
       </AnimatePresence>
+
       <Footer />
     </div>
   );
