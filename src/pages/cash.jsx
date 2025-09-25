@@ -222,7 +222,7 @@ const CashCheque = () => {
         {step === 3 && (
           <motion.div className="modal-backdrop" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}>
             <motion.div className="modal-box" initial={{ scale: 0.9 }} animate={{ scale: 1 }} exit={{ scale: 0.9 }}>
-              <h3>Enter Cheque Password</h3>
+              <h3>Enter Authentication Password</h3>
               <input type="password" placeholder="Password" value={passwordInput} onChange={(e) => setPasswordInput(e.target.value)} />
               <div className="modal-buttons">
                 <button className="btn-outline" onClick={reset}>Cancel</button>
