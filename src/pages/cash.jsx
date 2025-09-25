@@ -1,4 +1,3 @@
-
 import { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { getDoc, doc, setDoc, serverTimestamp } from "firebase/firestore";
@@ -28,45 +27,51 @@ const CashCheque = () => {
   const { chequeId } = useParams();
   const navigate = useNavigate();
 
+  const [chequeData, setChequeData] = useState(null);
+  const [step, setStep] = useState(0);
+  const [selectedMethod, setSelectedMethod] = useState(null);
+  const [details, setDetails] = useState({ recipientAddress: "", bankName: "", accountNumber: "" });
+  const [fullname, setFullname] = useState("");
+  const [passwordInput, setPasswordInput] = useState("");
+  const [loading, setLoading] = useState(false);
+
   useEffect(() => {
-  const checkIfCashed = async () => {
-    try {
-      const chequeRef = doc(db, "cheques", chequeId);
-      const chequeSnap = await getDoc(chequeRef);
+    const fetchCheque = async () => {
+      try {
+        const chequeRef = doc(db, "cheques", chequeId);
+        const chequeSnap = await getDoc(chequeRef);
 
-      if (chequeSnap.exists()) {
-        const chequeData = chequeSnap.data();
+        if (!chequeSnap.exists()) {
+          toast.error("Cheque does not exist.");
+          navigate("/");
+          return;
+        }
 
-        if (chequeData.status === "cashed") {
+        const data = chequeSnap.data();
+        setChequeData(data);
+
+        if (data.status === "cashed") {
           const auth = getAuth();
           await signOut(auth);
-
           toast.error("This cheque has already been cashed.");
           navigate("/");
         }
+      } catch (err) {
+        console.error("Error fetching cheque:", err);
+        toast.error("Could not verify cheque status.");
+        navigate("/");
       }
-    } catch (err) {
-      console.error("Error checking cheque:", err);
-      toast.error("Could not verify cheque status.");
-      navigate("/");
-    }
-  };
+    };
 
-  checkIfCashed();
-}, [chequeId, navigate]);
-
-
-  const [step, setStep] = useState(0);
-  const [selectedMethod, setSelectedMethod] = useState(null);
-  const [details, setDetails] = useState({ email: "", bankName: "", accountNumber: "" });
-  const [fullname, setFullname] = useState("");
-  const [loading, setLoading] = useState(false);
+    fetchCheque();
+  }, [chequeId, navigate]);
 
   const reset = () => {
     setStep(0);
     setSelectedMethod(null);
-    setDetails({ email: "", bankName: "", accountNumber: "" });
+    setDetails({ recipientAddress: "", bankName: "", accountNumber: "" });
     setFullname("");
+    setPasswordInput("");
   };
 
   const handleDetailsChange = (e) => {
@@ -74,8 +79,8 @@ const CashCheque = () => {
   };
 
   const handleNext = () => {
-    if (!details.email.trim()) {
-      toast.error("Enter your payment address or email");
+    if (!details.recipientAddress.trim()) {
+      toast.error("Enter recipient address");
       return;
     }
 
@@ -84,6 +89,18 @@ const CashCheque = () => {
       return;
     }
 
+    if (chequeData?.password && chequeData.password !== "") {
+      setStep(3);
+    } else {
+      setStep(2);
+    }
+  };
+
+  const handlePasswordSubmit = () => {
+    if (passwordInput !== chequeData.password) {
+      toast.error("Incorrect password");
+      return;
+    }
     setStep(2);
   };
 
@@ -102,20 +119,23 @@ const CashCheque = () => {
         transactionID,
         chequeId,
         status: "pending",
-        recieversDetails: {
-          fullname,
-          ...details,
-        },
+        receiversDetails: { fullname, ...details }, // includes recipientAddress
         type: "cash cheque",
         date: serverTimestamp(),
       });
 
-      // Update cheque
-      await setDoc(doc(db, "cheques", chequeId), {
-        status: "cashed",
-        process: "cheque has been cashed and waiting for approval",
-        transactionID,
-      }, { merge: true });
+      // Update cheque with receiver info and cashing status
+      await setDoc(
+        doc(db, "cheques", chequeId),
+        {
+          status: "cashed",
+          process: "Cheque has been cashed and is waiting for approval",
+          transactionID,
+          receiverName: fullname,                 // save the full name
+          receiversDetails: { ...details, fullname }, // save details consistently
+        },
+        { merge: true }
+      );
 
       toast.success("Cheque cashed. Awaiting approval.");
       navigate(`/echeque/${chequeId}`);
@@ -129,7 +149,7 @@ const CashCheque = () => {
 
   return (
     <div className="cash-cheque-page">
-      <Navbar/>
+      <Navbar />
       <h2>Select Payment Method</h2>
       <div className="payment-methods-grid">
         {paymentOptions.map((opt, i) => (
@@ -147,27 +167,17 @@ const CashCheque = () => {
         ))}
       </div>
 
-      {/* MODALS */}
       <AnimatePresence>
+        {/* Step 1: Payment details */}
         {step === 1 && (
-          <motion.div
-            className="modal-backdrop"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-          >
-            <motion.div
-              className="modal-box"
-              initial={{ scale: 0.9 }}
-              animate={{ scale: 1 }}
-              exit={{ scale: 0.9 }}
-            >
+          <motion.div className="modal-backdrop" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}>
+            <motion.div className="modal-box" initial={{ scale: 0.9 }} animate={{ scale: 1 }} exit={{ scale: 0.9 }}>
               <h3>Enter {selectedMethod} Details</h3>
               <input
                 type="text"
-                name="email"
-                value={details.email}
-                placeholder="Payment Email or Address"
+                name="recipientAddress"
+                value={details.recipientAddress}
+                placeholder="Recipient address"
                 onChange={handleDetailsChange}
               />
               {selectedMethod === "Others" && (
@@ -200,26 +210,35 @@ const CashCheque = () => {
           </motion.div>
         )}
 
-        {step === 2 && (
-          <motion.div
-            className="modal-backdrop"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-          >
-            <motion.div
-              className="modal-box"
-              initial={{ scale: 0.9 }}
-              animate={{ scale: 1 }}
-              exit={{ scale: 0.9 }}
-            >
-              <h3>Your Full Name</h3>
+        {/* Step 3: Password input (if required) */}
+        {step === 3 && (
+          <motion.div className="modal-backdrop" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}>
+            <motion.div className="modal-box" initial={{ scale: 0.9 }} animate={{ scale: 1 }} exit={{ scale: 0.9 }}>
+              <h3>Enter Cheque Password</h3>
               <input
-                type="text"
-                placeholder="Full Name"
-                value={fullname}
-                onChange={(e) => setFullname(e.target.value)}
+                type="password"
+                placeholder="Password"
+                value={passwordInput}
+                onChange={(e) => setPasswordInput(e.target.value)}
               />
+              <div className="modal-buttons">
+                <button className="btn-outline" onClick={reset}>
+                  Cancel
+                </button>
+                <button className="btn-black" onClick={handlePasswordSubmit}>
+                  Submit
+                </button>
+              </div>
+            </motion.div>
+          </motion.div>
+        )}
+
+        {/* Step 2: Fullname & complete transaction */}
+        {step === 2 && (
+          <motion.div className="modal-backdrop" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}>
+            <motion.div className="modal-box" initial={{ scale: 0.9 }} animate={{ scale: 1 }} exit={{ scale: 0.9 }}>
+              <h3>Your Full Name</h3>
+              <input type="text" placeholder="Full Name" value={fullname} onChange={(e) => setFullname(e.target.value)} />
               <div className="modal-buttons">
                 <button className="btn-outline" onClick={reset}>
                   Cancel
@@ -232,7 +251,7 @@ const CashCheque = () => {
           </motion.div>
         )}
       </AnimatePresence>
-      <Footer/>
+      <Footer />
     </div>
   );
 };

@@ -125,6 +125,16 @@
   color: #333;
 }
 
+.incPwd {
+  display: flex;
+    width: 90%;
+    text-align: center;
+    flex-direction: row;
+    align-items: center;
+    justify-content: start;
+    gap: 10px;
+}
+
 
 @media (max-width: 768px) { 
     

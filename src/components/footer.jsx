@@ -7,10 +7,7 @@ const Footer = () => {
         <div className={Styles.footerSection}>
           <h3>Legal & Compliance</h3>
           <p>
-            swiftChq Inc. is a third-party digital payment facilitator and not a
-            licensed bank, credit institution, or deposit-taking entity. All
-            transactions are routed through our approved payment partners and
-            banking institutions under applicable regulatory compliance.
+            swiftChq Inc. is a third-party digital payment facilitator 
           </p>
         </div>
 

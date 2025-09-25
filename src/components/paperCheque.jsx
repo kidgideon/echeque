@@ -88,7 +88,7 @@ const PaperCheque = ({ chequeId }) => {
 
           <div className="pay-section">
             <div className="pay-line">
-              <span className="label">PAY TO THE ORDER OF:</span>
+              <span className="label">PAY TO:</span>
               <span className="payee handwritten">{recieverName}</span>
               <span className="amount-box">
                 {currencySymbol(currency)}{" "}
@@ -103,10 +103,10 @@ const PaperCheque = ({ chequeId }) => {
 
           <div className="bottom-section">
             <div className="bank-info">
-              <p className="bank-label">PAYABLE AT</p>
-              <p>ALL swiftCheque BRANCHES</p>
-              <p>ACCOUNT № 001234567</p>
-            </div>
+  <p className="bank-label"> swiftCheque Digital Transfer</p>
+  <p>Cheque Node</p>
+  <p>Payment secured</p>
+</div>
             <div className="memo-signature">
               <div className="memo-line">
                 <span className="label">MEMO</span>

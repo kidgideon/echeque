@@ -14,7 +14,7 @@
 }
 
 .cheque-info {
-    width: 95%;
+    width: 97%;
     max-width: 500px;
     background-color: white;
     display: flex;
@@ -23,6 +23,8 @@
     flex-direction: column;
     padding: 20px;
     border-radius: 10px;
+    text-align: center;
+    gap: 10px;
 }
 
 .cheque-info p,
@@ -157,14 +159,15 @@
 
 .cheque-info {
     width: 95%;
-    max-width: 300px;
+    max-width: 500px;
     background-color: white;
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    padding: 20px;
+    padding: 30px 5px;
     border-radius: 10px;
+    gap: 10px;
 }
 
 }

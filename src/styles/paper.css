@@ -8,7 +8,7 @@
 
 .cheque-container {
   width: 800px;
-  height: 400px;
+  min-height: 400px;
   background: linear-gradient(135deg, #e8f5e8 0%, #f0f8f0 50%, #e8f5e8 100%);
   border: 2px solid #4a7c59;
   position: relative;
@@ -233,24 +233,24 @@
 
 @media (max-width: 768px) {  
     .cheque-container {
-        height: 400px;
+        min-height: 400px;
         font-size: 2px;
     }
 
     .label {
-        font-size: 9px;
+        font-size: 12px;
     }
 
     .amount-words {
-        font-size: 11px;
+        font-size: 12px;
     }
 
     .payee {
-        font-size: 11px;
+        font-size: 15px;
     }
 
     .amount {
-        font-size: 10px;
+        font-size: 11px;
     }
 
     .holder-name  {
@@ -262,11 +262,11 @@
     }
 
     .check-number {
-        font-size: 11px;
+        font-size: 12px;
     }
 
     .date-line {
-        font-size: 11px;
+        font-size: 12px;
     }
 
     .bank-info {
@@ -274,16 +274,16 @@
     }
 
     .memo-text {
-        font-size: 10px;
+        font-size: 11px;
     }
 
     .signature {
-        font-size: 10px;
+        font-size: 11px;
     }
 
     .cheque-container {
-      width: 95%;
-      max-width: 400px;
+      width: 97%;
+      max-width: 700px;
     }
 
 }

@@ -123,7 +123,8 @@ const TransactionsTable = ({ status }) => {
                 className="txn-row"
                 onClick={() => navigate(`/admin/manage-cheque/${txn.chequeId}`)}
               >
-                <td>{txn.recieversDetails?.fullname || "Unknown"}</td>
+              <td>{txn.receiversDetails?.fullname || "Unknown"}</td>
+
                 <td>{txn.type}</td>
                 <td className={`status ${txn.status}`}>{txn.status}</td>
                 <td>{new Date(txn.date?.seconds * 1000).toLocaleDateString()}</td>
