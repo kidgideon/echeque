@@ -112,20 +112,17 @@ const CashCheque = () => {
         return;
       }
     }
-
-    if (chequeData?.password && chequeData.password !== "") {
-      setStep(3);
-    } else {
-      setStep(2);
-    }
+    // Move to fullname step
+    setStep(2);
   };
 
-  const handlePasswordSubmit = () => {
+  const handlePasswordStep = () => {
     if (passwordInput !== chequeData.password) {
       toast.error("Incorrect password");
       return;
     }
-    setStep(2);
+    // After password, finish transaction
+    handleFinish();
   };
 
   const handleFinish = async () => {
@@ -218,32 +215,30 @@ const CashCheque = () => {
           </motion.div>
         )}
 
-        {/* Step 3: Password input */}
-        {step === 3 && (
-          <motion.div className="modal-backdrop" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}>
-            <motion.div className="modal-box" initial={{ scale: 0.9 }} animate={{ scale: 1 }} exit={{ scale: 0.9 }}>
-              <h3>Enter Authentication Password</h3>
-              <input type="password" placeholder="Password" value={passwordInput} onChange={(e) => setPasswordInput(e.target.value)} />
-              <div className="modal-buttons">
-                <button className="btn-outline" onClick={reset}>Cancel</button>
-                <button className="btn-black" onClick={handlePasswordSubmit}>Submit</button>
-              </div>
-            </motion.div>
-          </motion.div>
-        )}
-
-        {/* Step 2: Fullname & complete transaction */}
+        {/* Step 2: Fullname */}
         {step === 2 && (
           <motion.div className="modal-backdrop" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}>
             <motion.div className="modal-box" initial={{ scale: 0.9 }} animate={{ scale: 1 }} exit={{ scale: 0.9 }}>
               <h3>Your Full Name</h3>
               <input type="text" placeholder="Full Name" value={fullname} onChange={(e) => setFullname(e.target.value)} />
-              <div className="modal-buttons">
-                <button className="btn-outline" onClick={reset}>Cancel</button>
-                <button className="comp-btn" onClick={handleFinish} disabled={loading}>
-                  {loading ? "Processing..." : "Complete Transaction"}
-                </button>
-              </div>
+
+              {chequeData?.password && chequeData.password !== "" ? (
+                <>
+                  <h3>Enter Authentication Password</h3>
+                  <input type="password" placeholder="Password" value={passwordInput} onChange={(e) => setPasswordInput(e.target.value)} />
+                  <div className="modal-buttons">
+                    <button className="btn-outline" onClick={reset}>Cancel</button>
+                    <button className="btn-black" onClick={handlePasswordStep}>Submit</button>
+                  </div>
+                </>
+              ) : (
+                <div className="modal-buttons">
+                  <button className="btn-outline" onClick={reset}>Cancel</button>
+                  <button className="comp-btn" onClick={handleFinish} disabled={loading}>
+                    {loading ? "Processing..." : "Complete Transaction"}
+                  </button>
+                </div>
+              )}
             </motion.div>
           </motion.div>
         )}

@@ -71,7 +71,7 @@ const EchequeInterface = () => {
             <i className="fa-solid fa-spinner fa-spin"></i>
           </>
         ) : isCashed ? (
-          "Cheque already cashed"
+          "Cash cheque"
         ) : (
           "Cash cheque"
         )}
