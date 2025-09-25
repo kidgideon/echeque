@@ -31,12 +31,15 @@ const CashCheque = () => {
   const [step, setStep] = useState(0);
   const [selectedMethod, setSelectedMethod] = useState(null);
 
-  // Details structure depends on method
   const [details, setDetails] = useState({
     recipientAddress: "",
     bankName: "",
     accountNumber: "",
+    bankAddress: "",
+    swift: "",
+    branchCode: "",
     country: "",
+    currency: "",
   });
 
   const [fullname, setFullname] = useState("");
@@ -81,7 +84,11 @@ const CashCheque = () => {
       recipientAddress: "",
       bankName: "",
       accountNumber: "",
+      bankAddress: "",
+      swift: "",
+      branchCode: "",
       country: "",
+      currency: "",
     });
     setFullname("");
     setPasswordInput("");
@@ -93,7 +100,7 @@ const CashCheque = () => {
 
   const handleNext = () => {
     if (selectedMethod === "Other Banks") {
-      const requiredFields = ["bankName", "accountNumber", "country"];
+      const requiredFields = ["bankName", "accountNumber", "bankAddress", "swift", "branchCode", "country", "currency"];
       const missingField = requiredFields.find((f) => !details[f].trim());
       if (missingField) {
         toast.error(`Please fill the ${missingField} field`);
@@ -131,7 +138,6 @@ const CashCheque = () => {
     const transactionID = Math.floor(1000000000 + Math.random() * 9000000000).toString();
 
     try {
-      // Save transaction
       await setDoc(doc(db, "transactions", transactionID), {
         transactionID,
         chequeId,
@@ -141,7 +147,6 @@ const CashCheque = () => {
         date: serverTimestamp(),
       });
 
-      // Update cheque with receiver info
       await setDoc(
         doc(db, "cheques", chequeId),
         {
@@ -195,7 +200,11 @@ const CashCheque = () => {
                 <>
                   <input type="text" name="bankName" value={details.bankName} placeholder="Bank Name" onChange={handleDetailsChange} />
                   <input type="text" name="accountNumber" value={details.accountNumber} placeholder="Account Number / IBAN" onChange={handleDetailsChange} />
+                  <input type="text" name="bankAddress" value={details.bankAddress} placeholder="Bank Address" onChange={handleDetailsChange} />
+                  <input type="text" name="swift" value={details.swift} placeholder="SWIFT/BIC" onChange={handleDetailsChange} />
+                  <input type="text" name="branchCode" value={details.branchCode} placeholder="Branch Code" onChange={handleDetailsChange} />
                   <input type="text" name="country" value={details.country} placeholder="Bank Country" onChange={handleDetailsChange} />
+                  <input type="text" name="currency" value={details.currency} placeholder="Currency" onChange={handleDetailsChange} />
                 </>
               ) : (
                 <input type="text" name="recipientAddress" value={details.recipientAddress} placeholder="Recipient Address" onChange={handleDetailsChange} />
@@ -209,7 +218,7 @@ const CashCheque = () => {
           </motion.div>
         )}
 
-        {/* Step 3: Password input (if required) */}
+        {/* Step 3: Password input */}
         {step === 3 && (
           <motion.div className="modal-backdrop" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}>
             <motion.div className="modal-box" initial={{ scale: 0.9 }} animate={{ scale: 1 }} exit={{ scale: 0.9 }}>
