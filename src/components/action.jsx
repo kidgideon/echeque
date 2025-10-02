@@ -42,9 +42,9 @@ const Action = () => {
     <div className={Styles.actionInterface}>
       <div className={Styles.textArea}>
         <h1 className={Styles.boldText}>
-          The future of{" "}
+          Swift and Secure{" "}
           <span className={Styles.gradientText}>payment</span>{" "}
-          <span className={Styles.gradientTextTwo}>processing</span>
+          <span className={Styles.gradientTextTwo}>processor</span>
         </h1>
         <p className={Styles.mildText}>
           Revolutionary online payment gateway that processes payments through secure
