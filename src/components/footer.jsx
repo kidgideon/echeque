@@ -45,7 +45,7 @@ const Footer = () => {
           <h3>Contact & Complaints</h3>
           <p>
             For legal inquiries, compliance reports, or user complaints, please
-            reach out to our compliance team via{" "}
+            reach out to our compliance team via our official email address{" "}
             <a style={{color: "white"}} href="mailto:support@swiftcheque.cc">
               support@swiftcheque.cc
             </a>.
