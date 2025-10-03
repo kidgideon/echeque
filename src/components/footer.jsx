@@ -7,7 +7,7 @@ const Footer = () => {
         <div className={Styles.footerSection}>
           <h3>Legal & Compliance</h3>
           <p>
-            swiftChq Inc. is a third-party digital payment facilitator 
+           SwiftCheque.cc is a payment gateway that facilitates cheque processing services and not a bank, credit institution. All e-cheque transactions are securely facilitated through our approved banking partners and payment channels, in full compliance with applicable financial regulations.
           </p>
         </div>
 

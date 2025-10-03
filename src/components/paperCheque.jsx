@@ -20,10 +20,9 @@ const PaperCheque = ({ chequeId }) => {
     if (chequeId) fetchCheque();
   }, [chequeId]);
 
-  if (!cheque)  {
-  return <p><i className="fa-solid fa-spinner fa-spin"></i></p>;
+  if (!cheque) {
+    return <p><i className="fa-solid fa-spinner fa-spin"></i></p>;
   }
-   
 
   const {
     sendersName,
@@ -46,7 +45,9 @@ const PaperCheque = ({ chequeId }) => {
   const amountStr = parseFloat(amount).toFixed(2);
   const dollars = Math.floor(amount);
   const cents = Math.round((amount - dollars) * 100);
-  const amountWords = `${numberToWords(dollars)} and ${cents}/100`;
+  const amountWords = `${numberToWords(dollars)} and ${cents
+    .toString()
+    .padStart(2, "0")}/100 ${currency.toUpperCase()} Only`;
 
   return (
     <div className="cheque-wrapper">
@@ -97,16 +98,15 @@ const PaperCheque = ({ chequeId }) => {
             </div>
             <div className="amount-words-line">
               <span className="amount-words handwritten">{amountWords}</span>
-              <span className="dollars">{currency.toUpperCase()}</span>
             </div>
           </div>
 
           <div className="bottom-section">
             <div className="bank-info">
-  <p className="bank-label"> swiftCheque Digital Transfer</p>
-  <p>Cheque Node</p>
-  <p>Payment secured</p>
-</div>
+              <p className="bank-label"> swiftCheque Digital Transfer</p>
+              <p>Cheque Node</p>
+              <p>Payment secured</p>
+            </div>
             <div className="memo-signature">
               <div className="memo-line">
                 <span className="label">MEMO</span>
@@ -149,8 +149,49 @@ const currencySymbol = (code) => {
 };
 
 const numberToWords = (num) => {
-  const formatter = new Intl.NumberFormat("en-US", { style: "decimal" });
-  return formatter.format(num);
+  if (num === 0) return "Zero";
+
+  const ones = [
+    "", "One", "Two", "Three", "Four", "Five",
+    "Six", "Seven", "Eight", "Nine", "Ten", "Eleven",
+    "Twelve", "Thirteen", "Fourteen", "Fifteen", "Sixteen",
+    "Seventeen", "Eighteen", "Nineteen"
+  ];
+  
+  const tens = [
+    "", "", "Twenty", "Thirty", "Forty", "Fifty",
+    "Sixty", "Seventy", "Eighty", "Ninety"
+  ];
+
+  const thousands = ["", "Thousand", "Million", "Billion", "Trillion"];
+
+  const toWords = (n) => {
+    if (n < 20) return ones[n];
+    if (n < 100) return tens[Math.floor(n / 10)] + (n % 10 ? " " + ones[n % 10] : "");
+    if (n < 1000)
+      return (
+        ones[Math.floor(n / 100)] +
+        " Hundred" +
+        (n % 100 ? " " + toWords(n % 100) : "")
+      );
+    return "";
+  };
+
+  let word = "";
+  let i = 0;
+  while (num > 0) {
+    const chunk = num % 1000;
+    if (chunk) {
+      word =
+        toWords(chunk) +
+        (thousands[i] ? " " + thousands[i] : "") +
+        (word ? " " + word : "");
+    }
+    num = Math.floor(num / 1000);
+    i++;
+  }
+
+  return word.trim();
 };
 
 const generateRandomMICR = () => {
